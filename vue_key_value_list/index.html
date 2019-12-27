@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>NameValuePair Lists</title>
+    <link rel="stylesheet" href="https://unpkg.com/normalize.css">
+    <link rel="stylesheet" href="css/skeleton.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+<div id="lists-app" class="container">
+    <div class="errors-box">
+        <div v-if="error" class="errors">
+            <b>Please correct the following error:</b>
+            <span>{{ error }}</span>
+        </div>
+    </div>
+    <div class="content">
+        <div class="row-1">
+            <label for="input">Input:</label>
+            <input v-model="input" @keyup.enter="addItem" type="text"
+                   name="input" placeholder="name=value">
+            </input>
+        </div>
+        <div class="row-2">
+            <button v-on:click="addItem">Add</button>
+            <button v-on:click="remove">Remove Selected</button>
+            <button v-on:click="clear">Clear</button>
+            <button v-on:click="exportJSON">Export to JSON</button>
+            <button v-on:click="sortByName">Sort by Name</button>
+            <button v-on:click="sortByValue">Sort by Value</button>
+        </div>
+        <div class="row-2">
+            <ul class="key-value-list">
+                <li v-for="item in nameValues" v-on:click="setSelected(item)"
+                    v-bind:class="{ selected: item === selected }">
+                    {{ item.name }}={{ item.value }}
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<script src="js/listsApp.js"></script>
+</body>
+
+</html>
